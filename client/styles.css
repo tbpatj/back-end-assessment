@@ -86,3 +86,24 @@ body{
     transform: translateX(-5%) translateY(-5%);
     object-fit:cover;
 }
+.delete-btn{
+    width: 12px;
+    height: 12px;
+    background-color: rgb(165, 29, 29);
+    font-size: 11px;
+    color:white;
+    font-family: 'Courier New', Courier, monospace;
+    position: absolute;
+    top:0px;
+    right:0px;
+    border-radius: 2px;
+    border-bottom-left-radius: 10px;
+    vertical-align:bottom;
+    text-align: center;
+    transition: 0.25s;
+}
+.delete-btn:hover{
+    background-color: rgb(246, 148, 148);
+    width:15px;
+    height:15px;
+}

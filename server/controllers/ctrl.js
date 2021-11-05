@@ -60,6 +60,17 @@ module.exports = {
     },
     requestImages: (req,res) => {
         res.status(200).send(images);
+    },
+    deleteImage: (req,res) => {
+        console.log(req.params);
+        if(images.length > req.params.index && req.params.index >= 0){
+            images.splice(req.params.index,1);
+            
+            res.status(200).send("Removed Images");
+        } else {
+            res.status(400).send("You did not supply a valid image index");
+        }
+        
     }
    
 
