@@ -1,6 +1,7 @@
 let inspireContainer = document.getElementById("image-container");
 let insprElem = document.getElementById("inspiration");
 let insprElem2 = document.getElementById("inspiration2");
+let hideBtn = document.getElementById("hide-insp-bttn");
 
 let loaded=false;
 let animationFin=false;
@@ -44,7 +45,7 @@ document.getElementById("submit-cypher").onclick = function() {
     
 }
 
-document.getElementById("submit-decypher").onclick = function() {
+document.getElementById("submit-decypher").onclick = () => {
     let cyperTextBox = document.getElementById("cypher-text");
     let keyEl = document.getElementById("key-text");
     axios.post("http://localhost:4000/api/decypher/",{text:cyperTextBox.value, key:keyEl.value})
@@ -53,11 +54,25 @@ document.getElementById("submit-decypher").onclick = function() {
     }).catch( error => {console.log(error)})
 }
 
-//I could make this animation faster by creating two images, and alternating between the images making one hidden while it loads during the animation, then displaying upon animation finish
+
+document.getElementById("hide-insp-bttn").onclick = (event) => {
+    hideBtn.classList.add("hidden");
+    inspireContainer.classList.remove("container-show");
+
+    insprElem.classList.add("initialH");
+    insprElem.classList.add("hidden");
+    insprElem.classList.remove("imageShow");
+
+    insprElem2.classList.add("hidden");
+    insprElem2.classList.remove("imageShow");
+    animationFin = false;
+    loaded = false;
+}
 
 document.getElementById("inspiration-bttn").onclick = () => {//Inspiration button is clicked
     //if we haven't even clicked it once it will run this script finding an image and adding the needed animation classes
     if(insprElem.classList.contains("initialH")){ 
+        hideBtn.classList.remove("hidden");
         inspireContainer.classList.add("container-show");
          insprElem.classList.remove("initialH");
          insprElem.classList.remove("hidden");
