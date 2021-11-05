@@ -19,13 +19,7 @@ document.getElementById("complimentButton").onclick = function () {
         });
   };
 
-document.getElementById("save-files-bttn").onclick = function () {
-    axios.get("http://localhost:4000/api/save/")
-        .then(function (response) {
-          const data = response.data;
-          alert(data);
-        });
-};
+
 
 document.getElementById("fortune-button").onclick = function() {
     axios.get("http://localhost:4000/api/fortune")
