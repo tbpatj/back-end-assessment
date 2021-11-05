@@ -5,7 +5,8 @@ const fortunes = [
     "It is better to deal with problems before they arise.",
     "Keep your face to the sunshine and you will never see shadows."
 ];
-let images = [];
+let globalID = 1;
+let images = {};
 
 //characters that will be scrambled, can add any you want to get scrambled as long as it's even
 let alphStrKey = "abcdefghijklmnopqrstuvwxyz! ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@#";
@@ -49,28 +50,38 @@ module.exports = {
         }
     },
     saveImage: (req,res) => {
-        if(images.includes(req.body.url)){
-            res.status(200).send("You have already saved that image");
-        } else {
-            images.push(req.body.url);
-            res.status(200).send("Saved the image");
-            console.log("saved Images");
-            console.log(images);
+        let exists = false;
+        console.log('checking');
+        for(id in images){
+            if(images[id].image === req.body.url){
+                res.status(200).send("You have already saved that image");
+                exists = true;
+                return;
+            }
         }
+        //just double check if the id hasn't been added
+        if(!images[globalID] && !exists){
+            //add the image object
+            images[globalID] = {
+                image: req.body.url,
+                text: ""
+            };
+            console.log("added new image");
+            console.log(images);
+            globalID ++;
+            res.status(200).send("Saved the doggo");
+        }
+        
     },
     requestImages: (req,res) => {
         res.status(200).send(images);
     },
     deleteImage: (req,res) => {
+        delete images[req.params.id];
         console.log(req.params);
-        if(images.length > req.params.index && req.params.index >= 0){
-            images.splice(req.params.index,1);
-            
-            res.status(200).send("Removed Images");
-        } else {
-            res.status(400).send("You did not supply a valid image index");
-        }
-        
+    },
+    updateText: (req,res) => {
+        images[req.params.id].text = req.body.text;
     }
    
 
