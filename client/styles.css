@@ -1,4 +1,17 @@
-
+html, body, header {
+    margin: 0px;
+    padding: 0px;
+}
+p{
+    font-size:10px;
+}
+body{
+    background-color: rgb(249, 247, 236);
+}
+.base-buttons{
+    background-color: burlywood;
+    padding: 10px;
+}
 .hidden {
     display:none;
 }
@@ -8,6 +21,7 @@
 }
 .image-container{
     display: flex;
+    padding-left: 20px;
     flex-direction: column;
     justify-content: center;
     align-items:flex-start;
@@ -18,6 +32,7 @@
     transition: 1s;
 }
 .container-show{
+    padding:20px;
     height:320px;
 }
 .imageShow{
@@ -33,4 +48,7 @@
     display: block;
     width:200px;
     height:20px;
+}
+.text-and-other-container{
+    padding-left: 30px;
 }

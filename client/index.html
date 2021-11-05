@@ -5,24 +5,28 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body class="container">
-    <button id="complimentButton">Get a compliment</button>
-    <button id="fortune-button">Get a fortune</button>
-    <button id="inspiration-bttn">Inspire Me</button>
-    <button id="hide-insp-bttn" class="hidden">Hide Inspiration</button>
-    <br>
+    <div class="base-buttons">
+      <button id="complimentButton">Get a compliment</button>
+      <button id="fortune-button">Get a fortune</button>
+      <button id="inspiration-bttn">Inspire Me</button>
+      <button id="hide-insp-bttn" class="hidden">Hide Inspiration</button>
+      <a href="Dog-Page.html">See my dogs</a>
+    </div>
     <div id="image-container" class="image-container">
       <img id="inspiration" href="" class="my-image hidden initialH">
       <img id="inspiration2" href="" class="my-image hidden">
       <button class="save-button" id="save-button">Save Image</button>
     </div>
+    <div class="text-and-other-container">
     <p> if you feel like securing your information motivates you try our cypher</p>
     <p> just enter text into the "Cypher Text" field, if you don't have</p>
-    <br>
+
     <textarea id = "cypher-text"placeholder="Cypher Text"></textarea>
     <button id="submit-cypher">Cypher</button>
     <button id="submit-decypher">Decypher</button>
     <br>
     <input id="key-text" placeholder="Cypher Key">
+    </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="main.js">
     </script>
