@@ -58,7 +58,7 @@ document.getElementById("submit-decypher").onclick = function() {
 document.getElementById("inspiration-bttn").onclick = () => {//Inspiration button is clicked
     //if we haven't even clicked it once it will run this script finding an image and adding the needed animation classes
     if(insprElem.classList.contains("initialH")){ 
-        inspireContainer.classList.add("imageShow");
+        inspireContainer.classList.add("container-show");
          insprElem.classList.remove("initialH");
          insprElem.classList.remove("hidden");
          insprElem.classList.add("imageShow");
@@ -68,7 +68,7 @@ document.getElementById("inspiration-bttn").onclick = () => {//Inspiration butto
         })
     } else { //if we have already clicked for an image before just add the animation classes
         //make sure adding of classes starts before you do axios
-        inspireContainer.classList.remove("imageShow");
+        inspireContainer.classList.remove("container-show");
         inspireContainer.classList.add("swapping");
         animationFin = false;
         loaded = false;
@@ -106,7 +106,7 @@ function loadedImg( event ){
 function swapTheClasses(){
     if(inspireContainer.classList.contains("swapping")){
         inspireContainer.classList.remove("swapping");
-        inspireContainer.classList.add("imageShow");
+        inspireContainer.classList.add("container-show");
         if(insprElem.classList.contains("hidden")){
             insprElem.classList.remove("hidden");
             insprElem.classList.add("imageShow");

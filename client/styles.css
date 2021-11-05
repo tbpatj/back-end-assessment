@@ -7,9 +7,18 @@
     transition: 1s;
 }
 .image-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:flex-start;
     height: 0px;
     overflow: hidden;
+    
+
     transition: 1s;
+}
+.container-show{
+    height:320px;
 }
 .imageShow{
     display: block;
@@ -18,6 +27,10 @@
    
 }
 .swapping{
-    display: block;
     height:0px;
+}
+.save-button{
+    display: block;
+    width:200px;
+    height:20px;
 }
