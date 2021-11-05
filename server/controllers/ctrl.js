@@ -5,7 +5,8 @@ const fortunes = [
     "It is better to deal with problems before they arise.",
     "Keep your face to the sunshine and you will never see shadows."
 ];
-const images = [];
+let images = [];
+loadMyImages();
 
 //characters that will be scrambled, can add any you want to get scrambled as long as it's even
 let alphStrKey = "abcdefghijklmnopqrstuvwxyz! ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@#";
@@ -57,12 +58,33 @@ module.exports = {
             console.log("saved Images");
             console.log(images);
         }
+    },
+    requestImages: (req,res) => {
+        res.status(200).send(images);
+    },
+    writeImages: (req,res) => {
+        console.log("saving files");
+        let fileMg = require("../fileMngr.js");
+        let str = fileMg.loadData("/Users/timothy/Documents/DevMountain/week-4/Assessment/back-end/server/data/images.json");
+        let imagesJson = JSON.parse(str).images;
+        for(let i = 0; i < images.length; i ++){
+            if(!imagesJson.includes(images[i])){
+                imagesJson.push(images[i]);
+            }
+        }
+        str = {"images":imagesJson}
+        fileMg.storeData(str,"/Users/timothy/Documents/DevMountain/week-4/Assessment/back-end/server/data/images.json");
     }
+
 }
 
 
-
-
+function loadMyImages(){
+    let fileMg = require("../fileMngr.js");
+    
+    let str = fileMg.loadData("/Users/timothy/Documents/DevMountain/week-4/Assessment/back-end/server/data/images.json");
+    images = JSON.parse(str).images;
+}
 
 
 //Cypher Functions
