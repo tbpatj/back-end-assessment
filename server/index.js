@@ -8,6 +8,11 @@ app.use(cors());
 
 app.use(express.json()); // When we want to be able to accept JSON.
 
+const controller = require('./controllers/ctrl');
+app.get("/api/fortune",controller.getFortune);
+app.post("/api/encode/",controller.encodeText);
+
+
 app.get("/api/compliment", (req, res) => {
   const compliments = ["Gee, you're a smart cookie!",
 					 "Cool shirt!",
