@@ -1,0 +1,13 @@
+
+.hidden {
+    display:none;
+    height: 0px;
+}
+img{
+    transition: 1s;
+}
+.imageShow{
+    display: block;
+    height:300px;
+   
+}

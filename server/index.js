@@ -10,7 +10,8 @@ app.use(express.json()); // When we want to be able to accept JSON.
 
 const controller = require('./controllers/ctrl');
 app.get("/api/fortune",controller.getFortune);
-app.post("/api/encode/",controller.encodeText);
+app.post("/api/cypher/",controller.encodeText);
+app.post("/api/decypher/",controller.decypher);
 
 
 app.get("/api/compliment", (req, res) => {

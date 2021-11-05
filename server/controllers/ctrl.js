@@ -20,20 +20,32 @@ module.exports = {
         res.status(200).send(fortunes[randNum]);
     },
     encodeText: (req,res) => {
+        //if supplied no key we will generate a new cypher object with a new key
         if(req.body.key === ""){
             let cyphObj = newCypherObj();
             let encryptedText = cypher(req.body.text,cyphObj);
             res.status(200).send({text: encryptedText, key: cyphObj.cyphStrKey});
         } else {
+            //if the key doesn't match our original keys length we know its been corrupted
             if(req.body.key.length != alphStrKey.length){
-                res.status(200).send({text:`Your key has been corrupted. \nPlease leave cypher key field blank.\nWe will supply you with a new key`});
+                res.status(200).send({text:`Your key has been corrupted.\nPlease leave cypher key field blank.\nWe will supply you with a new key`});
             } else {
+                //this runs if the user supplied us with a non corrupted key
                 let cyphObj = createCypherFrom(req.body.key);
                 let encryptedText = cypher(req.body.text,cyphObj);
                 res.status(200).send({text: encryptedText, key:"given"});
             }
         }
-
+    },
+    decypher: (req,res) => {
+        console.log(req.body);
+        if(req.body.key === "" || req.body.key.length !== alphStrKey.length){
+            res.status(200).send({text:"You're Key is corrupt or non-existant"});
+        } else {
+            let cyphObj = createCypherFrom(req.body.key);
+            let decpyheredText = decypher(req.body.text,cyphObj);
+            res.status(200).send({text: decpyheredText});
+        }
     }
 }
 
