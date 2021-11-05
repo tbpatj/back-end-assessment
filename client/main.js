@@ -1,3 +1,14 @@
+let inspireContainer = document.getElementById("image-container");
+let insprElem = document.getElementById("inspiration");
+let insprElem2 = document.getElementById("inspiration2");
+
+let loaded=false;
+let animationFin=false;
+
+insprElem.addEventListener("load",loadedImg);
+insprElem2.addEventListener("load",loadedImg);
+inspireContainer.addEventListener('transitionend',transitionFinish);
+
 document.getElementById("complimentButton").onclick = function () {
     axios.get("http://localhost:4000/api/compliment/")
         .then(function (response) {
@@ -42,17 +53,72 @@ document.getElementById("submit-decypher").onclick = function() {
     }).catch( error => {console.log(error)})
 }
 
-document.getElementById("inspiration-bttn").onclick = () => {
-    axios.get("https://dog.ceo/api/breeds/image/random")
-    .then( (res) => {
-        let insprElem = document.getElementById("inspiration");
+//I could make this animation faster by creating two images, and alternating between the images making one hidden while it loads during the animation, then displaying upon animation finish
+
+document.getElementById("inspiration-bttn").onclick = () => {//Inspiration button is clicked
+    //if we haven't even clicked it once it will run this script finding an image and adding the needed animation classes
+    if(insprElem.classList.contains("initialH")){ 
+        inspireContainer.classList.add("imageShow");
+         insprElem.classList.remove("initialH");
+         insprElem.classList.remove("hidden");
+         insprElem.classList.add("imageShow");
+         axios.get("https://dog.ceo/api/breeds/image/random")
+        .then( (res) => {
+            insprElem.src = res.data.message;
+        })
+    } else { //if we have already clicked for an image before just add the animation classes
+        //make sure adding of classes starts before you do axios
+        inspireContainer.classList.remove("imageShow");
+        inspireContainer.classList.add("swapping");
+        animationFin = false;
+        loaded = false;
         if(insprElem.classList.contains("hidden")){
-             insprElem.classList.remove("hidden");
-             insprElem.classList.add("imageShow");
+            axios.get("https://dog.ceo/api/breeds/image/random")
+            .then( (res) => {
+                insprElem.src = res.data.message;
+            })
+        } else {
+            axios.get("https://dog.ceo/api/breeds/image/random")
+            .then( (res) => {
+                insprElem2.src = res.data.message;
+            })
         }
-        console.log(insprElem.classList);
-        insprElem.src = res.data.message;
-    })
+        
+    }
+    
+}
+function transitionFinish( event ){ //this just starts to load up the image
+    animationFin = true;
+    if(loaded){
+        console.log("yeah324");
+        loaded = false;
+        swapTheClasses()
+    }
+}
+
+function loadedImg( event ){
+    loaded = true;
+    if(animationFin){
+        swapTheClasses()
+    }
+}
+
+function swapTheClasses(){
+    if(inspireContainer.classList.contains("swapping")){
+        inspireContainer.classList.remove("swapping");
+        inspireContainer.classList.add("imageShow");
+        if(insprElem.classList.contains("hidden")){
+            insprElem.classList.remove("hidden");
+            insprElem.classList.add("imageShow");
+            insprElem2.classList.add("hidden");
+            insprElem2.classList.remove("imageShow");
+        } else {
+            insprElem.classList.add("hidden");
+            insprElem.classList.remove("imageShow");
+            insprElem2.classList.remove("hidden");
+            insprElem2.classList.add("imageShow");
+        }
+    }
 }
 
 console.log("yeah");

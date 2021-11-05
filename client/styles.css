@@ -1,13 +1,23 @@
 
 .hidden {
     display:none;
-    height: 0px;
 }
-img{
+.my-image{
+    height:0px;
+    transition: 1s;
+}
+.image-container{
+    height: 0px;
+    overflow: hidden;
     transition: 1s;
 }
 .imageShow{
     display: block;
     height:300px;
+    border-radius: 10px;
    
+}
+.swapping{
+    display: block;
+    height:0px;
 }
