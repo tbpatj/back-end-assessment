@@ -80,6 +80,8 @@ body{
     margin-left: 0px;
     margin-right: 0px;
     transition: 1s;
+    transform: translateY(35px);
+    border-radius: 30px;
 }
 .img-post{
     width: 100%;
