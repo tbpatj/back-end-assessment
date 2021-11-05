@@ -12,6 +12,9 @@ const controller = require('./controllers/ctrl');
 app.get("/api/fortune",controller.getFortune);
 app.post("/api/cypher/",controller.encodeText);
 app.post("/api/decypher/",controller.decypher);
+app.post("/api/images/",controller.saveImage);
+
+
 
 
 app.get("/api/compliment", (req, res) => {

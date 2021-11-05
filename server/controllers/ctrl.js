@@ -5,6 +5,7 @@ const fortunes = [
     "It is better to deal with problems before they arise.",
     "Keep your face to the sunshine and you will never see shadows."
 ];
+const images = [];
 
 //characters that will be scrambled, can add any you want to get scrambled as long as it's even
 let alphStrKey = "abcdefghijklmnopqrstuvwxyz! ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890@#";
@@ -45,6 +46,16 @@ module.exports = {
             let cyphObj = createCypherFrom(req.body.key);
             let decpyheredText = decypher(req.body.text,cyphObj);
             res.status(200).send({text: decpyheredText});
+        }
+    },
+    saveImage: (req,res) => {
+        if(images.includes(req.body.url)){
+            res.status(200).send("You have already saved that image");
+        } else {
+            images.push(req.body.url);
+            res.status(200).send("Saved the image");
+            console.log("saved Images");
+            console.log(images);
         }
     }
 }

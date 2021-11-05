@@ -2,6 +2,7 @@ let inspireContainer = document.getElementById("image-container");
 let insprElem = document.getElementById("inspiration");
 let insprElem2 = document.getElementById("inspiration2");
 let hideBtn = document.getElementById("hide-insp-bttn");
+let svebttn = document.getElementById("save-button");
 
 let loaded=false;
 let animationFin=false;
@@ -43,6 +44,19 @@ document.getElementById("submit-cypher").onclick = function() {
         } else alert(res.data.text);
     }).catch( error => {console.log(error)})
     
+}
+
+svebttn.onclick = () => {
+    let url = "";
+    if(!insprElem.classList.contains("hidden")){
+        url = insprElem.src;
+    } else {
+        url = insprElem2.src;
+    }
+    axios.post("http://localhost:4000/api/images",{url:url})
+    .then( (res) => {
+        alert(res.data);
+    }).catch( error => {console.log(error)});
 }
 
 document.getElementById("submit-decypher").onclick = () => {
