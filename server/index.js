@@ -15,6 +15,7 @@ app.post("/api/cypher/",controller.encodeText);
 app.post("/api/decypher/",controller.decypher);
 app.post("/api/images/",controller.saveImage);
 app.delete("/api/images/:id",controller.deleteImage);
+app.put("/api/images/:id",controller.updateText)
 
 
 

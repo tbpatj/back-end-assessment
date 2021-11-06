@@ -81,7 +81,11 @@ module.exports = {
         console.log(req.params);
     },
     updateText: (req,res) => {
+        console.log("updated Text");
+        console.log(req.params.id);
+        console.log(req.body.text);
         images[req.params.id].text = req.body.text;
+        res.status(200).send("Updated teh text");
     }
    
 
